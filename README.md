@@ -34,6 +34,9 @@ You can now easily add or remove questions and answers within the bot. Once you 
 ![image](https://github.com/MahdyarEn/telegram-business/assets/90097342/d59cb3f2-0c85-4a6c-8da0-ba83392fd759)
 ![image](https://github.com/MahdyarEn/telegram-business/assets/90097342/a30d2d10-eb08-4385-b4ae-8c08937ce945)
 
+## incoming Feature
+- [ ] Add support for stickers, videos, photos, etc. as responses
+
 ## Support
 If you run into any issues, don't hesitate to reach out to me!
 [@MahdyarEn](https://t.me/mahdyarEn)
