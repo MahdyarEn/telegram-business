@@ -23,15 +23,19 @@ if (isset($update)) {
     $message = $update->message;
     $text = $message->text;
     $chat_id = $message->chat->id;
-    $b_message = $update->business_message;
-    $b_id = $b_message->business_connection_id;
-    $b_text = $b_message->text;
-    $b_message_id = $b_message->message_id;
-    $b_chat_id = $b_message->chat->id;
+    // business updates
+    if (isset($update->business_message)) {
+        $b_message = $update->business_message;
+        $b_id = $b_message->business_connection_id;
+        $b_text = $b_message->text;
+        $b_message_id = $b_message->message_id;
+        $b_chat_id = $b_message->chat->id;
+    }
 }
 // db
 $db =  json_decode(file_get_contents('db.json'), true);
 $step = $db['step'];
+// keyboards
 $home = json_encode(['resize_keyboard' => true, 'keyboard' => [[['text' => "Add auto reply ✉️"]], [['text' => "remove auto reply 🚫"]]]]);
 $back = json_encode(['resize_keyboard' => true, 'keyboard' => [[['text' => "Back 🔙"]]]]);
 // ================================================ \\
@@ -65,7 +69,9 @@ if ($text && $chat_id == $admin) {
         } else {
             bot('sendMessage', ['chat_id' => $chat_id, 'text' => "There is an error. Please follow the example to proceed.\n\nExample:\n\nHello\nHi, this is MahdyarEn, how can I help you?", 'reply_markup' => $back]);
         }
-    } elseif ($text == 'remove auto reply 🚫') {
+    } 
+    // remove existing auto-reply 
+    elseif ($text == 'remove auto reply 🚫') {
         if (count($db['data']) > 0) {
             foreach ($db['data'] as $item) {
                 $list .= "<code>{$item['text']}</code>\n---\n";
@@ -89,7 +95,7 @@ if ($text && $chat_id == $admin) {
     }
 }
 // Handle messages to Bussiness Account
-if ($b_text) {
+if (isset($b_text)) {
     foreach ($db['data'] as $item) {
         if ($item['text'] == $b_text) {
             bot('sendMessage', ['business_connection_id' => $b_id, 'chat_id' => $b_chat_id, 'text' => $item['answer'], 'reply_parameters' => json_encode(['message_id' => $b_message_id])]);
