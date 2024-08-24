@@ -15,7 +15,7 @@ $admin = ""; // userID of your account
 2- After editing and uploading to your server, it is time to set webhook.
 According to [Telegram's documentation](https://core.telegram.org/bots/api#march-31-2024), to get updates related to business, you must specify the relevant updates during setwebhook for this purpose set webhook in the following way (don't forget to replace TOKEN and DOMAIN):
 ```
-https://api.telegram.org/botTOKEN/setwebhook?url=DOMAIN&allowed_updates=["message","edited_message","business_connection","business_message","edited_business_message","deleted_business_messages"
+https://api.telegram.org/botTOKEN/setwebhook?url=DOMAIN&allowed_updates=["message","edited_message","business_connection","business_message","edited_business_message","deleted_business_messages"]
 ```
 
 3- If you want to add bots to your chatbots on the Telegram Business section, you'll need to activate this feature in Botfather. To do this, simply select your bot from the Botfather settings section, then go to Business Mode and turn on the feature.
